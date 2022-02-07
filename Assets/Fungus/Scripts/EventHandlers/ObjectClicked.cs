@@ -32,8 +32,12 @@ namespace Fungus
 
         protected EventDispatcher eventDispatcher;
 
-        private TargetPosition target;
-   
+        private TargetPosition targetPos;
+
+        private void Start()
+        {
+            targetPos = FindObjectOfType<TargetPosition>();
+        }
 
         protected virtual void OnEnable()
         {
@@ -61,20 +65,31 @@ namespace Fungus
         /// </summary>
         protected virtual IEnumerator DoExecuteBlock(int numFrames)
         {
-            if (numFrames == 0)
+
+            while(Vector3.Distance(clickableObject.transform.position, targetPos.transform.position) > clickableObject.DistanceToActivate)
             {
+                yield return new WaitForSeconds(0.1f);
+            }
+
+            if (Vector2.Distance(clickableObject.transform.position, targetPos.transform.position) <= clickableObject.DistanceToActivate)
+            {
+                if (numFrames == 0)
+                {
+                    ExecuteBlock();
+                    yield break;
+                }
+
+                int count = Mathf.Max(waitFrames, 1);
+                while (count > 0)
+                {
+                    count--;
+                    yield return new WaitForEndOfFrame();
+                }
+
                 ExecuteBlock();
-                yield break;
-            }
 
-            int count = Mathf.Max(waitFrames, 1);
-            while (count > 0)
-            {
-                count--;
-                yield return new WaitForEndOfFrame();
             }
-
-            ExecuteBlock();
+   
         }
 
         #region Public members
