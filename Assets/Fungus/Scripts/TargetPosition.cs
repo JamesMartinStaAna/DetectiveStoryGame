@@ -4,24 +4,54 @@ using UnityEngine;
 
 public class TargetPosition : MonoBehaviour
 {
-    private Vector2 followTarget;
-    public float Speed;
+    public Vector2 FollowTarget;
+
+    public float WalkSpeed;
+    public float RunSpeed;
+    public float DistanceBeforeSlowDown;
+
+    public bool isDialogActive;
 
     // Start is called before the first frame update
     void Start()
     {
-        followTarget = transform.position;
+        FollowTarget = transform.position;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Move()
     {
-        var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (Input.GetMouseButtonDown(0))
+        if (!isDialogActive)
         {
-            followTarget = new Vector2(mousePosition.x, 0);
+            var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            if (Input.GetMouseButtonDown(0))
+            {
+                FollowTarget = new Vector2(mousePosition.x, transform.position.y);
+            }
+            transform.position = Vector2.MoveTowards(transform.position, FollowTarget, Time.deltaTime * SpeedBasedOnDistance(FollowTarget));
         }
+    }
 
-        transform.position = Vector2.MoveTowards(transform.position, followTarget, Time.deltaTime * Speed);
+    private float SpeedBasedOnDistance(Vector2 targetPosition)
+    {
+        if (Vector2.Distance(this.transform.position, FollowTarget) > DistanceBeforeSlowDown)
+        {
+            return RunSpeed;
+        }
+        else
+        {
+            return WalkSpeed;
+        }
+    }
+
+    public void EnterDialog()
+    {
+        isDialogActive = true;
+    }
+
+    public void ExitDialog()
+    {
+        isDialogActive = false;
     }
 }
+
+

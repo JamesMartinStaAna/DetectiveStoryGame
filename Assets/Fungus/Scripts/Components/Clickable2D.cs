@@ -23,6 +23,11 @@ namespace Fungus
         [SerializeField] protected bool useEventSystem;
 
         public float DistanceToActivate;
+        private TargetPosition targetPosition;
+        
+        private void Awake() {
+            targetPosition = FindObjectOfType<TargetPosition>();
+        }
 
         protected virtual void ChangeCursor(Texture2D cursorTexture)
         {
@@ -31,7 +36,7 @@ namespace Fungus
                 return;
             }
 
-            Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
+            Cursor.SetCursor(cursorTexture, Vector3.zero, CursorMode.Auto);
         }
 
         protected virtual void DoPointerClick()
@@ -48,6 +53,7 @@ namespace Fungus
 
         protected virtual void DoPointerEnter()
         {
+            if(targetPosition.isDialogActive) return;
             ChangeCursor(hoverCursor);
         }
 

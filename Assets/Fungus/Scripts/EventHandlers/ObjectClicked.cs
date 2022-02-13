@@ -66,6 +66,7 @@ namespace Fungus
         protected virtual IEnumerator DoExecuteBlock(int numFrames)
         {
 
+            // Checks set Distance between player and clickable object
             while(Vector3.Distance(clickableObject.transform.position, targetPos.transform.position) > clickableObject.DistanceToActivate)
             {
                 yield return new WaitForSeconds(0.1f);
@@ -73,6 +74,8 @@ namespace Fungus
 
             if (Vector2.Distance(clickableObject.transform.position, targetPos.transform.position) <= clickableObject.DistanceToActivate)
             {
+                targetPos.FollowTarget = targetPos.transform.position;
+                targetPos.isDialogActive = true;
                 if (numFrames == 0)
                 {
                     ExecuteBlock();
