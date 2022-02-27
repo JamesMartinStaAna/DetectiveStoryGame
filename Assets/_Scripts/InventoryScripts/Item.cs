@@ -11,6 +11,7 @@ public class Item : MonoBehaviour
     [HideInInspector]public string ItemId;
     [HideInInspector]public string ItemDescription;
     [HideInInspector]public Sprite Icon;
+    [HideInInspector]public Sprite Highlight;
     [HideInInspector]public int ItemQuantity;
     [HideInInspector]public int MaxItemQuantity;
 
@@ -63,6 +64,7 @@ public class Item : MonoBehaviour
 
     public void ToggleItemReceivers(bool value)
     {
+        if(itemReceivers.Count <= 0) return;
         foreach(ItemReceiver itemReceiver in itemReceivers)
         {
             itemReceiver.gameObject.SetActive(value);
@@ -84,6 +86,7 @@ public class Item : MonoBehaviour
         if (other.CompareTag(DetectiveGameReferences.ITEM_RECEIVER))
         {
             ItemReceiver receiverHovered = other.GetComponent<ItemReceiver>();
+
             if (receiverHovered.keyID.Equals(ItemId))
             {
                 dragReleaseEvent = receiverHovered.ReceiveItem;

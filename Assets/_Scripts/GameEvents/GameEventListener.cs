@@ -7,15 +7,16 @@ public class GameEventListener : MonoBehaviour
 {
     public GameEventChannel gameEventChannel;
     public UnityEvent response;
+
     private void OnEnable() {
-        gameEventChannel.RegisterListener(this);
+        gameEventChannel?.RegisterListener(this);
     }
 
     private void OnDisable() {
-        gameEventChannel.UnregisterListener(this);
+        gameEventChannel?.UnregisterListener(this);
     }
 
     public void OnEventRaised(){
-        response.Invoke();
+        response?.Invoke();
     }
 }

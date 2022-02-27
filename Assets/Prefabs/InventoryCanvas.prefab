@@ -146,9 +146,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4129825711972820452}
+  - component: {fileID: 4129825711972820459}
   - component: {fileID: 4129825711972820458}
   - component: {fileID: 4129825711972820457}
-  - component: {fileID: 4938811338448336561}
   m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
@@ -177,6 +177,23 @@ RectTransform:
   m_AnchoredPosition: {x: -664, y: 458}
   m_SizeDelta: {x: 633.045, y: 338.863}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4129825711972820459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4129825711972820456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df69b2aec80d5614390124aae3ecdf7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerInventory: {fileID: 0}
+  GridLayout: {fileID: 0}
+  ItemDisplays: []
+  InventoryUI: {fileID: 4129825711972820456}
+  ItemHolderPrefab: {fileID: 3550580694593161801, guid: bd3a8b48f37761a45abe1a211e712b01, type: 3}
 --- !u!222 &4129825711972820458
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -215,23 +232,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4938811338448336561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4129825711972820456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0fb8f2aba76c824ca278607a88fadce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerInventory: {fileID: 0}
-  GridLayout: {fileID: 0}
-  ItemDisplays: []
-  InventoryUI: {fileID: 0}
-  ItemHolderPrefab: {fileID: 0}
 --- !u!1 &4129825712593927315
 GameObject:
   m_ObjectHideFlags: 0
@@ -642,8 +642,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 4129825713254411247}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6707ab2fbd1d144419cf5cbd9693ff52, type: 3}
+  m_Script: {fileID: 11500000, guid: a719e02ba0cc08644974f0cf7c9350e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   InventoryUI: {fileID: 4129825711972820456}
-  InvenUIController: {fileID: 4938811338448336561}
+  InvenUIController: {fileID: 4129825711972820459}

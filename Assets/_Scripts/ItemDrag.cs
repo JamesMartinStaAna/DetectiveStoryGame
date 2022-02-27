@@ -15,6 +15,7 @@ public class ItemDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
     private Canvas canvas;
     private Item item;
     private TargetPosition targetPosition;
+    [SerializeField] private bool getOutOfParent;
 
     private void Awake()
     {
@@ -36,7 +37,13 @@ public class ItemDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
     public void OnBeginDrag(PointerEventData eventData)
     {
         this.transform.SetParent(this.transform.parent.parent);
-        targetPosition.FollowTarget = player.transform.position;
+        if (getOutOfParent == true)
+        {
+            targetPosition.FollowTarget = player.transform.position;
+        }
+
+        Cursor.visible = false;
+
         player.IsDraggingAnItem = true;
         item.ToggleItemReceivers(true);
     }
@@ -47,6 +54,7 @@ public class ItemDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
         player.IsDraggingAnItem = false;
         item.dragReleaseEvent?.Invoke(item);
         item.ToggleItemReceivers(false);
+        Cursor.visible = true;
     }
 
     private void ResetToInventory()

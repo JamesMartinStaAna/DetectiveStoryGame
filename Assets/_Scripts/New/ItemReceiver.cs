@@ -14,15 +14,19 @@ public class ItemReceiver : MonoBehaviour
     [SerializeField] private string targetBlock;
     [SerializeField] private float distanceToActivate;
 
-    private void Awake() {
+    private void Awake()
+    {
         player = FindObjectOfType<Player>();
     }
     public void ReceiveItem(Item item)
     {
+        if (Vector2.Distance(player.transform.position, this.transform.position) > distanceToActivate && distanceToActivate != 0) return;
 
-        if (Vector2.Distance(player.transform.position, this.transform.position) > distanceToActivate) return;
-
-        flowchart.ExecuteBlock(targetBlock);
+        if (flowchart != null)
+        {
+            Debug.Log("tried to execute");
+            flowchart.ExecuteBlock(targetBlock);
+        }
 
         if (consumeItem)
         {

@@ -15,29 +15,12 @@ namespace DetectiveGame.Player
             playerMovement = GetComponent<PlayerMovement>();
         }
 
-        [ContextMenu("Interact")]
-        public void Interact()
+        public void Interact(Item item)
         {
-            if (itemToPickup != null && !playerInventory.IsFull)
+            if (!playerInventory.IsFull)
             {
-                playerInventory.AddItem(itemToPickup);
+                playerInventory.AddItem(item);
                 onItemPickup?.Raise();    
-            }
-        }
-
-        private void OnTriggerStay2D(Collider2D other)
-        {
-            if (other.CompareTag(DetectiveGameReferences.ITEM))
-            {
-                itemToPickup = other.GetComponent<Item>();
-            }
-        }
-
-        private void OnTriggerExit2D(Collider2D other)
-        {
-            if (other.CompareTag(DetectiveGameReferences.ITEM))
-            {
-                itemToPickup = null;
             }
         }
     }

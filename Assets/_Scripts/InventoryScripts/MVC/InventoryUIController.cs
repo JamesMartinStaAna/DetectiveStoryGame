@@ -14,7 +14,6 @@ public class InventoryUIController : MonoBehaviour
     public GameObject InventoryUI;
     public GameObject ItemHolderPrefab;
 
-    [ContextMenu("Refresh Display")]
     public void RefreshDisplay()
     {
         //Check if there are items in inventory then update Inventory UI display

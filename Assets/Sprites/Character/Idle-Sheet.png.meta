@@ -14,6 +14,12 @@ TextureImporter:
   - first:
       213: -1701584443341091289
     second: Idle-Sheet_3
+  - first:
+      213: 4619437029804489033
+    second: Idle-Sheet_4
+  - first:
+      213: -4551553420487462637
+    second: Idle-Sheet_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -194,6 +200,48 @@ TextureImporter:
       bones: []
       spriteID: 72ec253d6f1c268e0800000000000000
       internalID: -1701584443341091289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 50
+        height: 50
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94938c7f0898b1040800000000000000
+      internalID: 4619437029804489033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 0
+        width: 50
+        height: 50
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31171ab7742a5d0c0800000000000000
+      internalID: -4551553420487462637
       vertices: []
       indices: 
       edges: []

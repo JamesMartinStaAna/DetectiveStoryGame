@@ -9,6 +9,8 @@ public class ItemData : ScriptableGameObject
     public string ItemId;
     public string ItemDescription;
     public Sprite Icon;
+    public Sprite Highlight;
     public int ItemQuantity;
     public int MaxItemQuantity;
+    public AudioClip OnInteractSound;
 }

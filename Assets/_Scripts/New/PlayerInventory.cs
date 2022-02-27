@@ -33,36 +33,27 @@ namespace DetectiveGame.Player
 
         public void AddItem(Item itemToAdd)
         {
-            //Remove maybe
-            if (StackItems)
-            {
-                foreach (Item currentItem in Items)
-                {
-                    // Check if inventory has similiar items then add quantity
-                    if (currentItem.ItemId == itemToAdd.ItemId && currentItem.ItemQuantity < currentItem.MaxItemQuantity)
-                    {
-                        currentItem.ItemQuantity += itemToAdd.ItemQuantity;
-                        Destroy(itemToAdd.gameObject);
-                        return;
-                    }
-                }
-            }
-            // If item is not yet in inventory add item  
-            Item duplicate = Instantiate(itemToAdd);
-            itemsInSlots += 1;
-            Destroy(itemToAdd.gameObject);
-
-            duplicate.transform.parent = this.transform;
+            itemToAdd.transform.parent = this.transform;
+            
 
             // Strip down Item's Components except for Item Script and Transform
-            foreach (Component c in duplicate.GetComponents<Component>())
+            foreach (Component c in itemToAdd.GetComponents<Component>())
             {
-                if (!(c is Item || c is Transform || c is BoxCollider2D))
+                if (!(c is Item || c is Transform || c is BoxCollider2D || c is GameEventListener || c is ItemReceiver || c is Rigidbody2D))
                 {
                     Destroy(c);
                 }
             }
-            Items.Add(duplicate);
+
+            itemToAdd.GetComponent<BoxCollider2D>().size = new Vector2(100, 100);
+
+            foreach(Transform child in itemToAdd.transform)
+            {
+                child.gameObject.SetActive(true);
+                child.GetComponent<BoxCollider2D>().size = new Vector2(100, 100);
+                child.GetComponent<ItemReceiver>().enabled = true;
+            }
+            Items.Add(itemToAdd);
         }
 
     }
