@@ -12,10 +12,13 @@ public class TargetPosition : MonoBehaviour
     public float DistanceBeforeSlowDown;
     private Animator animator;
     public bool isDialogActive;
+    private Rigidbody rb;
 
     // Start is called before the first frame update
     private void Awake()
     {
+        isDialogActive = true;
+        rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         if (CameraTarget == null)
         {
@@ -37,24 +40,42 @@ public class TargetPosition : MonoBehaviour
             {
                 var mousePosition = CameraTarget.ScreenToWorldPoint(Input.mousePosition);
                 FollowTarget = new Vector2(mousePosition.x, transform.position.y);
-
-                if (mousePosition.x - transform.position.x < 0)
-                {
-                    this.gameObject.transform.localScale = new Vector3(-6, 6, 1);
-                }
-                else
-                {
-                    this.gameObject.transform.localScale = new Vector3(6, 6, 1);
-                }
             }
-            transform.position = Vector2.MoveTowards(transform.position, FollowTarget, Time.deltaTime * SpeedBasedOnDistance(FollowTarget));
+
+
             animator.SetFloat("MoveValue", Vector2.Distance(transform.position, FollowTarget));
         }
-        else{
+        else
+        {
             animator.SetFloat("MoveValue", 0);
         }
 
 
+    }
+
+    private void FixedUpdate()
+    {
+        if (!isDialogActive)
+        {
+            Vector2 newPosition = Vector2.MoveTowards(transform.position, FollowTarget, Time.deltaTime * SpeedBasedOnDistance(FollowTarget));
+            rb.MovePosition(newPosition);
+        }
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Wall")
+        {
+            FollowTarget = new Vector2(this.transform.position.x, this.transform.position.y);
+        }
+    }
+
+    private void OnCollisionStay(Collision other)
+    {
+        if (other.gameObject.tag == "Wall")
+        {
+            // FollowTarget = new Vector2(this.transform.position.x, this.transform.position.y);
+        }
     }
 
     private float SpeedBasedOnDistance(Vector2 targetPosition)

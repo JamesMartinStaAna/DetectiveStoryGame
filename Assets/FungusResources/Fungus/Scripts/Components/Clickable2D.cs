@@ -28,8 +28,9 @@ namespace Fungus
         private Sprite baseSprite;
         public static bool isHovered;
         [SerializeField] private Sprite Highlight;
-        
-        private void Awake() {
+
+        private void Awake()
+        {
             targetPosition = FindObjectOfType<TargetPosition>();
             baseSprite = GetComponent<SpriteRenderer>().sprite;
         }
@@ -55,20 +56,32 @@ namespace Fungus
 
             eventDispatcher.Raise(new ObjectClicked.ObjectClickedEvent(this));
             GetComponent<SpriteRenderer>().sprite = baseSprite;
+
             SetMouseCursor.ResetMouseCursor();
+            GetComponent<SpriteRenderer>().sprite = baseSprite;
         }
 
         protected virtual void DoPointerEnter()
         {
-            if(targetPosition.isDialogActive || !clickEnabled) return;
+            if (targetPosition.isDialogActive || !clickEnabled) return;
 
             GetComponent<SpriteRenderer>().sprite = Highlight;
             ChangeCursor(hoverCursor);
         }
 
+        public void ChangeHighlight(Sprite newHighlight, Texture2D newHoverCursor)
+        {
+            baseSprite = GetComponent<SpriteRenderer>().sprite;
+            Highlight = newHighlight;
+
+            if (newHoverCursor == null) return;
+
+            hoverCursor = newHoverCursor;
+        }
+
         protected virtual void DoPointerExit()
         {
-            if(!clickEnabled) return;
+            if (!clickEnabled) return;
             // Always reset the mouse cursor to be on the safe side
             SetMouseCursor.ResetMouseCursor();
             GetComponent<SpriteRenderer>().sprite = baseSprite;
@@ -85,6 +98,15 @@ namespace Fungus
         }
 
         protected virtual void OnMouseEnter()
+        {
+            if (!useEventSystem)
+            {
+                DoPointerEnter();
+                isHovered = true;
+            }
+        }
+
+        protected virtual void OnMouseOver()
         {
             if (!useEventSystem)
             {

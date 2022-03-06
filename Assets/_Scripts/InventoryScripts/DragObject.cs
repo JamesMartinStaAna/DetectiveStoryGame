@@ -58,9 +58,6 @@ public class DragObject : MonoBehaviour, IPointerDownHandler, IBeginDragHandler,
     {
         startPosition = transform.localPosition;
         canvasGroup.blocksRaycasts = false;
-        Debug.Log("begindrag Check");
-
-
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -85,7 +82,6 @@ public class DragObject : MonoBehaviour, IPointerDownHandler, IBeginDragHandler,
     public void OnPointerDown(PointerEventData eventData)
     {
         //SoundManager.PlaySound("click");
-        Debug.Log("click Check");
     }
 
     private void Update()

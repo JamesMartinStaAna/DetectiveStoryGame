@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17df5451808148a4ab94527eab2cd2c9, type: 3}
+  m_Name: BandAid
+  m_EditorClassIdentifier: 
+  DeveloperNote: 
+  Name: BandAid
+  ItemId: BandAid
+  ItemDescription: 
+  Icon: {fileID: 21300000, guid: 031550094141a504b9f9a8644e138cf0, type: 3}
+  Highlight: {fileID: 0}
+  ItemQuantity: 0
+  MaxItemQuantity: 1
+  OnInteractSound: {fileID: 0}

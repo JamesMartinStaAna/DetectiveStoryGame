@@ -25,9 +25,6 @@ public class Object_Opacity_pass_thru : MonoBehaviour
             alphaLevel = .5f;
 
         sprite.color = new Color(1, 1, 1, alphaLevel);
-
-
-        Debug.Log(collision.name + "Enter");
     }
 
     private void OnTriggerExit(Collider collision)

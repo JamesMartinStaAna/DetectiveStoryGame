@@ -24,7 +24,6 @@ public class ItemReceiver : MonoBehaviour
 
         if (flowchart != null)
         {
-            Debug.Log("tried to execute");
             flowchart.ExecuteBlock(targetBlock);
         }
 

@@ -34,7 +34,6 @@ namespace DetectiveGame.Player
         public void AddItem(Item itemToAdd)
         {
             itemToAdd.transform.parent = this.transform;
-            
 
             // Strip down Item's Components except for Item Script and Transform
             foreach (Component c in itemToAdd.GetComponents<Component>())

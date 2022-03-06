@@ -13,9 +13,10 @@ namespace DetectiveGame.Player
 
         public Sprite underWear;
         public Sprite work;
+        private void Awake() {
+            //Debug.unityLogger.logEnabled = false;
+        }
 
-        
-        // Start is called before the first frame update
         void Start()
         {
 

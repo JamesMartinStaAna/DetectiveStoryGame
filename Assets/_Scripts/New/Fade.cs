@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DetectiveGame.Player;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Fade : MonoBehaviour
@@ -23,15 +24,15 @@ public class Fade : MonoBehaviour
     {
 
     }
-    
-    public void PlayerFadeToScene(float speed, Transform target)
+
+    public void PlayerFadeToScene(float speed, Transform target, bool sceneTransfer, int buildIndex)
     {
-        if(isCoroutineRunning)
+        if (isCoroutineRunning)
         {
             StopAllCoroutines();
         }
 
-        StartCoroutine(CoroutinePlayerFadeToScene(speed, target));
+        StartCoroutine(CoroutinePlayerFadeToScene(speed, target, sceneTransfer, buildIndex));
     }
 
     private IEnumerator FadeIn(float speed)
@@ -59,7 +60,7 @@ public class Fade : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-    private IEnumerator CoroutinePlayerFadeToScene(float speed, Transform target)
+    private IEnumerator CoroutinePlayerFadeToScene(float speed, Transform target, bool sceneTransfer, int buildIndex)
     {
         targetPosition.FollowTarget = player.transform.position;
         isCoroutineRunning = true;
@@ -69,9 +70,16 @@ public class Fade : MonoBehaviour
             fadeGroup.alpha += Time.deltaTime * speed;
             yield return null;
         }
+        if (sceneTransfer)
+        {
+            SceneManager.LoadSceneAsync(buildIndex);
+        }
+        else
+        {
+            player.transform.position = new Vector3(target.transform.localPosition.x, 0, player.transform.position.z);
+            targetPosition.FollowTarget = player.transform.position;
+        }
 
-        player.transform.position = new Vector3(target.transform.localPosition.x, 0, player.transform.position.z);
-        targetPosition.FollowTarget = player.transform.position;
         while (fadeGroup.alpha >= 0)
         {
             fadeGroup.alpha -= Time.deltaTime * speed;

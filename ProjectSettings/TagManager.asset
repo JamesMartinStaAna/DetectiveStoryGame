@@ -16,7 +16,7 @@ TagManager:
   - Water
   - UI
   - ItemReceiver
-  - 
+  - Player
   - 
   - 
   - 
@@ -44,4 +44,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 1799711067
+    locked: 0
+  - name: Foreground
+    uniqueID: 2421590441
+    locked: 0
+  - name: UI
+    uniqueID: 2352823423
     locked: 0

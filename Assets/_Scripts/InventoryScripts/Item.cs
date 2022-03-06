@@ -55,7 +55,6 @@ public class Item : MonoBehaviour
     public void Use()
     {
         //Activate other script for health, mana etc.
-        Debug.Log("Using item! " + Name);
         //Update ItemQuantity in inventory
         playerInventory.Items.Remove(this);
         itemUseEvent?.Raise();
